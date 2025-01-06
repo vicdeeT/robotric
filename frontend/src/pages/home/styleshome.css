@@ -1,0 +1,977 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .feature i {
+          color: green; /* Green color */
+          font-size: 3rem; /* Adjust icon size */
+      }
+      .feature-title {
+          font-weight: bold;
+          margin-top: 10px;
+      }
+      .feature-description {
+          font-size: 0.9rem;
+          color: #555;
+      }
+  /* Navbar Styles */
+  .navbar {
+    background-color: #000;
+    padding: 1rem 0rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .navbar-menu li {
+    margin-left: 1.5rem;
+  }
+
+  .navbar-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .navbar-menu a:hover {
+    color: #ff6600;
+  }
+
+  .navbar-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-buttons a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-buttons .login {
+    background-color: #ff6600; /* Button background */
+    color: #fff; /* Button text */
+  }
+
+  .navbar-buttons .login:hover {
+    background-color: transparent; /* Hover effect */
+    color: #ff6600;
+    border: 2px solid #ff6600; /* Hover border color */
+  }
+
+  .navbar-buttons .open-account {
+    background-color: #008CBA; /* Button background */
+    color: #fff; /* Button text */
+  }
+
+  .navbar-buttons .open-account:hover {
+    background-color: transparent; /* Hover effect */
+    color: #008CBA;
+    border: 2px solid #008CBA; /* Hover border color */
+  }
+
+  /* Mobile Menu */
+  .navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1rem 0;
+    }
+
+    .navbar-menu.show {
+      display: flex;
+    }
+
+    .navbar-menu li {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .navbar-buttons {
+      flex-direction: column;
+      margin: 1rem 0 0;
+    }
+
+    .navbar-buttons a {
+      margin: 0.5rem 0;
+    }
+
+    .navbar-toggle {
+      display: block;
+    }
+  }
+
+/* Global Styles */
+
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  /* max-width: 1440px; */
+  margin: 0 auto;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  background-image: url('https://robotrik.com/img/vecteezy_stock-market-investment-trading-graph-glowing-lines-and_26236507.jpg'); /* Replace with your image URL */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  color: #ffffff; /* Adjust text color for better contrast */
+  /* min-height: 100vh;  */
+}
+
+/* Text Content */
+.hero .text {
+  max-width: 50%;
+  text-align: left;
+}
+
+.hero .text h1 {
+  font-size: 60px;
+  margin: 0;
+  color: #ffffff; /* Ensure readability */
+}
+
+.hero .text h1 span {
+  color: #FFD700; /* Highlighted text */
+  font-size: 70px;
+}
+
+.hero .text p {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+/* Image */
+.hero .image {
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1440px and below) */
+@media (max-width: 1440px) {
+  .hero {
+      padding: 40px;
+  }
+
+  .hero .text h1 {
+      font-size: 55px;
+  }
+
+  .hero .text h1 span {
+      font-size: 65px;
+  }
+
+  .hero .text p {
+      font-size: 22px;
+  }
+}
+
+/* Tablets and Medium Screens (1024px and below) */
+@media (max-width: 1024px) {
+  .hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px;
+  }
+
+  .hero .text {
+      max-width: 100%;
+      margin-bottom: 20px;
+  }
+
+  .hero .image {
+      max-width: 60%;
+  }
+
+  .hero .image img {
+      border-radius: 0; /* Remove circular shape */
+      object-fit: contain;
+  }
+}
+
+/* Small Tablets and Large Phones (768px and below) */
+@media (max-width: 768px) {
+  .hero {
+      padding: 20px;
+  }
+
+  .hero .text h1 {
+      font-size: 40px;
+  }
+
+  .hero .text p {
+      font-size: 18px;
+  }
+
+  .hero .image {
+      max-width: 80%;
+  }
+}
+
+/* Small Phones (480px and below) */
+@media (max-width: 480px) {
+  .hero {
+      padding: 20px;
+  }
+
+  .hero .text h1 {
+      font-size: 35px;
+  }
+
+  .hero .text h1 span {
+      font-size: 45px;
+  }
+
+  .hero .text p {
+      font-size: 16px;
+  }
+
+  .hero .image {
+      max-width: 90%;
+  }
+}
+
+/* Extra Small Phones (320px and below) */
+@media (max-width: 320px) {
+  .hero {
+      padding: 15px;
+  }
+
+  .hero .text h1 {
+      font-size: 30px;
+  }
+
+  .hero .text h1 span {
+      font-size: 35px;
+  }
+
+  .hero .text p {
+      font-size: 14px;
+  }
+
+  .hero .image {
+      max-width: 100%;
+  }
+
+  .hero .image img {
+      border-radius: 0;
+      object-fit: contain;
+  }
+}
+
+
+
+/* Overall container styling */
+.care {
+  background-color: #f8f9fa; /* Light background for the care section */
+  padding: 40px 0; /* Add padding around the container */
+}
+
+.tools {
+  text-align: center; /* Center the content in the tools container */
+}
+
+/* Header styling */
+.header {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px; /* Spacing below the header */
+}
+
+/* Title styling */
+.title {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 40px; /* Spacing below the title */
+}
+
+/* Feature cards styling */
+.feature {
+  margin-top: 15px;
+  background: linear-gradient(to right, #34b0dd, #2569fc); /* White background for each feature */
+  border: 1px solid #ddd; /* Light border around each feature */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  padding: 20px; /* Add padding inside each feature */
+  text-align: center; /* Center-align the content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+.feature:hover {
+  background: #1b0b97; /* White background for each feature */
+}
+
+/* Image styling */
+.feature img {
+  max-width: 100px; /* Limit image width */
+  height: auto;
+  margin-bottom: 15px; /* Spacing between image and text */
+}
+
+/* Title styling for each feature */
+.feature-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px; /* Spacing below the title */
+}
+
+/* Description styling for each feature */
+.feature-description {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Hover effect on feature cards */
+.feature:hover {
+  transform: translateY(-10px); /* Lift the feature card slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .title {
+      font-size: 20px; /* Adjust title size on smaller screens */
+  }
+
+  .feature {
+      margin-bottom: 20px; /* Add space between stacked feature cards */
+  }
+}
+
+
+
+
+/* Default Styling */
+.container-fluid.content {
+  padding: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 406px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.text-container h2 {
+  font-size: 42px;
+  color: #333;
+  /* text-align: center; */
+  font-weight: 600;
+}
+
+.text-container h1 {
+  font-size: 30px;
+  color: #444;
+  /* text-align: center; */
+ 
+}
+
+.text-container p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  /* text-align: center; */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For large desktops (1440px and above) */
+@media (min-width: 1440px) {
+  .text-container h2 {
+      font-size: 42px;
+      font-weight: 600;
+      text-align: center;
+  }
+  
+}
+
+/* For medium desktops (1200px to 1440px) */
+@media (max-width: 1439px) and (min-width: 1200px) {
+  .text-container h2 {
+      font-size: 40px;
+      font-weight: 600;
+      text-align: center;
+  }
+  .text-container h1 {
+      font-size: 32px;
+  }
+  .text-container p {
+      font-size: 17px;
+  }
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .text-container h2 {
+      font-size: 35px;
+      font-weight: 600;
+      text-align: center;
+  }
+  .text-container h1 {
+  
+      font-size: 26px;
+  }
+  .text-container p {
+      font-size: 16px;
+     
+  }
+}
+
+/* For tablets (768px to 992px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .text-container h2 {
+      font-size: 33px;
+      font-weight: 600;
+      text-align: center;
+     
+  }
+  .text-container h1 {
+      font-size: 22px;
+    
+  }
+  .text-container p {
+      font-size: 14px;
+  }
+}
+
+/* For smaller tablets and phones (576px to 768px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .text-container h2 {
+      font-size: 35px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 25px;
+  }
+  .text-container h1 {
+      font-size: 30px;
+  }
+  .text-container p {
+      font-size: 14px;
+  }
+}
+
+/* For mobile screens (320px to 576px) */
+@media (max-width: 575px) {
+  .text-container h2 {
+      font-size: 30px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 25px;
+      
+  }
+  .text-container h1 {
+      font-size: 23px;
+      text-align: center;
+
+  }
+  .text-container p {
+      font-size: 14px;
+      text-align: center;
+
+  }
+}
+
+
+/* Default Styling */
+.container-fluid {
+  background: #f8f9fa;
+}
+
+.Platform {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  flex-wrap: wrap;  /* Allow wrapping for smaller screens */
+}
+
+.text-content {
+  max-width: 50%;
+}
+
+.text-content h2 {
+  color: #4a4a4a;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.text-content h1 {
+  color: #2c2c2c;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  color: #4a4a4a;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.image-content {
+  max-width: 40%;
+}
+
+.image-content img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 20px;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For large desktops (1440px and above) */
+@media (min-width: 1440px) {
+  .text-content h2 {
+      font-size: 20px;
+  }
+  .text-content h1 {
+      font-size: 36px;
+  }
+  .text-content p {
+      font-size: 18px;
+  }
+  .image-content img {
+      max-height: 600px;
+  }
+}
+
+/* For medium desktops (1200px to 1440px) */
+@media (max-width: 1439px) and (min-width: 1200px) {
+  .text-content h2 {
+      font-size: 18px;
+  }
+  .text-content h1 {
+      font-size: 32px;
+  }
+  .text-content p {
+      font-size: 16px;
+  }
+  .image-content img {
+      max-height: 550px;
+  }
+}
+
+/* For tablets (768px to 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .text-content h2 {
+      font-size: 16px;
+  }
+  .text-content h1 {
+      font-size: 28px;
+  }
+  .text-content p {
+      font-size: 14px;
+  }
+
+}
+
+/* For smaller tablets and phones (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .text-content h2 {
+      font-size: 14px;
+  }
+  .text-content h1 {
+      font-size: 24px;
+  }
+  .text-content p {
+      font-size: 12px;
+  }
+ 
+}
+
+/* For mobile screens (320px to 575px) */
+@media (max-width: 575px) {
+  .Platform {
+      padding: 20px;  /* Less padding for smaller screens */
+  }
+  .text-content {
+      max-width: 100%;  /* Full width for small screens */
+      text-align: center;  /* Center text for smaller screens */
+  }
+  .image-content {
+      max-width: 100%;  /* Full width for smaller screens */
+      margin-top: 20px;  /* Add some spacing between text and image */
+  }
+  .text-content h2 {
+      font-size: 12px;
+  }
+  .text-content h1 {
+      font-size: 20px;
+  }
+  .text-content p {
+      font-size: 10px;
+  }
+  
+}
+
+.countries {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  padding: 20px;
+  gap: 20px;
+}
+.card {
+  background: #ffd700;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+.card h2 {
+  color: #00a651;
+  font-size: 36px;
+  margin: 0;
+}
+.card h3 {
+  color: #2c2c2c;
+  font-size: 18px;
+  margin: 10px 0;
+}
+.card p {
+  color: #6c6c6c;
+  font-size: 16px;
+  margin: 0;
+}
+.image-card {
+  width: 100%;
+  margin-top: 20px;
+  height: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.image-card img {
+  width: 100%;
+  height: 400px;
+}
+@media (max-width: 1440px) {
+  .countries {
+      gap: 15px;
+  }
+  .card {
+      padding: 15px;
+  }
+}
+@media (max-width: 1024px) {
+  .countries {
+      padding: 10px;
+  }
+  .card h2 {
+      font-size: 28px;
+  }
+  .card h3 {
+      font-size: 16px;
+  }
+  .card p {
+      font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .col-md-6 {
+      width: 100%;
+  }
+  .card {
+      margin-top: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .card h2 {
+      font-size: 24px;
+  }
+  .card h3 {
+      font-size: 14px;
+  }
+  .card p {
+      font-size: 12px;
+  }
+  .image-card {
+      margin-top: 20px;
+  }
+}
+@media (max-width: 320px) {
+  .countries {
+      gap: 10px;
+  }
+  .card {
+      padding: 10px;
+  }
+  .card h2 {
+      font-size: 20px;
+  }
+  .card h3 {
+      font-size: 12px;
+  }
+  .card p {
+      font-size: 10px;
+  }
+}
+
+
+
+
+
+/* General Styles */
+.Platform {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+.text-content {
+  flex: 1;
+  max-width: 50%;
+}
+
+.text-content h2 {
+  font-size: 28px;
+  color: #00a651;
+  margin-bottom: 10px;
+}
+
+.text-content h1 {
+  font-size: 36px;
+  color: #2c2c2c;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  font-size: 16px;
+  color: #6c6c6c;
+  line-height: 1.6;
+}
+
+.image-content {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content img {
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .text-content h1 {
+      font-size: 28px;
+  }
+  .text-content p {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Platform {
+      flex-direction: column;
+      align-items: center;
+      /* gap: 30px; */
+  }
+  .text-content, .image-content {
+      max-width: 100%;
+      text-align: center;
+  }
+  .text-content h1 {
+      font-size: 24px;
+  }
+  .text-content p {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-content h2 {
+      font-size: 20px;
+  }
+  .text-content h1 {
+      font-size: 20px;
+  }
+  .text-content p {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .text-content h2 {
+      font-size: 18px;
+  }
+  .text-content h1 {
+      font-size: 18px;
+  }
+  .text-content p {
+      font-size: 10px;
+  }
+}
+
+
+
+footer {
+  background-color: #E0E4E8;
+  color: #343a40;
+  padding: 2rem 0;
+}
+
+footer img {
+  max-width: 45px;
+  height: auto;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+  color: #343a40;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+footer form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+footer input[type="email"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+footer button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+footer button:hover {
+  background-color: #0056b3;
+}
+
+footer .social-icons a {
+  font-size: 1.25rem;
+  color: #343a40;
+}
+
+footer .social-icons a:hover {
+  color: #007bff;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  footer .d-flex {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  footer ul {
+      text-align: center;
+  }
+
+  footer ul li {
+      display: block;
+      margin-bottom: 0.5rem;
+  }
+
+  footer .social-icons {
+      text-align: center;
+  }
+
+  footer form {
+      flex-direction: column;
+  }
+
+  footer button, footer input[type="email"] {
+      width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  footer ul li {
+      margin-bottom: 0.3rem;
+  }
+
+  footer form {
+      gap: 0.25rem;
+  }
+}
