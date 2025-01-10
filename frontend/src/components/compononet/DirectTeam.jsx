@@ -3,7 +3,7 @@ import { fetchUser, getAlldirectUser } from "services/TeamApis"
 
 const DirectTeam = () => {
     const [allUsers, setallUsers] = useState([])
-    const [fetchUserDetails, setfetchUserDetails] = useState({referrerId: '', username: '', email: '', referrerId:'', mobile: '' })
+    const [fetchUserDetails, setfetchUserDetails] = useState({referrerId: '', username: '', email: '', referrals:'', mobile: '' })
     useEffect(() => {
         fetchallUsers()
     }, [])
