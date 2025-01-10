@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import "./styleshome.css"
+import styles from "./styleshome.module.css"
+import { useState } from "react"
 
 const Home = () => {
     const navigate = useNavigate()
@@ -7,41 +8,57 @@ const Home = () => {
         localStorage.removeItem("authToken")
         navigate("/")
     }
+    const [isMenuOpen, setisMenuOpen] = useState(false)
+    const handleClickMenu = () => {
+        setisMenuOpen(!isMenuOpen)
+    }
+
     return (
 
         <>
             <header>
-                <nav className="navbar">
-                    <div className="container">
+                <nav className={styles.navbar}>
+                    <div className="container flex justify-between py-2">
                         {/* <!-- Logo Section --> */}
-                        <a href="#" className="navbar-brand">Robotrik</a>
+                        <a href="#" className={styles.navbarbrand}>Robotrik</a>
 
                         {/* <!-- Navigation Links --> */}
-                        <ul className="navbar-menu">
+                        <ul className={styles.navbarMenu}>
                             <li><a href="/">Home</a></li>
                             <li><a href="/dashdarkX/about">About</a></li>
                             <li><a href="#services">Services</a></li>
                             <li><a href="/dashdarkX/contact">Contact</a></li>
-                            <div className="navbar-buttons">
-                                {!localStorage.getItem("authToken") ? <a className="login" href="/dashdarkX/authentication/login">Log in</a> : <div className="login" onClick={handleClick}>LogOut</div>
+                            <div className={styles.navbarButtons}>
+                                {!localStorage.getItem("authToken") ? <a className={styles.login} href="/dashdarkX/authentication/login">Log in</a> : <div className={styles.login} onClick={handleClick}>LogOut</div>
 
                                 }
-                                <a className="open-account" href="/dashdarkX/authentication/sign-up">Open Account</a>
+                                <a className={styles.openAccount} href="/dashdarkX/authentication/sign-up">Open Account</a>
                             </div>
                         </ul>
 
                         {/* <!-- Buttons inside Navbar --> */}
+                        <ul className="h-fit w-screen absolute top-0 left-0 bg-gray-800 mt-20 text-lg  hidden">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/dashdarkX/about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="/dashdarkX/contact">Contact</a></li>
+                            <div className={styles.navbarButtons}>
+                                {!localStorage.getItem("authToken") ? <a className={styles.login} href="/dashdarkX/authentication/login">Log in</a> : <div className={styles.login} onClick={handleClick}>LogOut</div>
 
+                                }
+                                <a className={styles.openAccount} href="/dashdarkX/authentication/sign-up">Open Account</a>
+                            </div>
+                        </ul>
 
                         {/* <!-- Mobile Menu Button --> */}
-                        <button className="navbar-toggle" id="menu-toggle">☰</button>
+                        {isMenuOpen ? <i className="fa-solid fa-xmark" onClick={handleClickMenu}></i> : <i className="my-auto fa-solid fa-bars md:hidden" onClick={handleClickMenu}></i>}
                     </div>
                 </nav>
             </header>
 
             {/* <!-- Content Placeholder --> */}
-            <div className="hero">
-                <div className="text">
+            <div className={styles.hero}>
+                <div className={styles.text}>
                     <h1>
                         Hey! I Am
                         <span>RobotTrik</span>
@@ -50,36 +67,36 @@ const Home = () => {
                         It's time to take your trading experience up a notch!
                     </p>
                 </div>
-                <div className="image">
+                <div className={styles.image}>
                     <img alt="Hero Image" src="https://robotrik.com/img/Hero-Image.png" />
                 </div>
             </div>
 
 
-            <div className="container-fluid care bg-white">
-                <div className="container tools">
-                    <div className="header">CARE FEATURES</div>
-                    <div className="title">Provide Awesome Service <br /> With Our Tools</div>
+            <div className={`${styles['container-fluid']} ${styles.care}`}>
+                <div className={`container ${styles.tools}`}>
+                    <div className={styles.header}>CARE FEATURES</div>
+                    <div className={styles.title}>Provide Awesome Service <br /> With Our Tools</div>
                     <div className="row">
                         <div className="col-md-4">
-                            <div className="feature">
-                                <img alt="Trading Solution" src="https://robotrik.com/img/features/conversation-icon-1.png" />
-                                <div className="feature-title">Trading Solution</div>
-                                <div className="feature-description">Trading solutions for active day traders and new entrants.</div>
+                            <div className={styles.feature}>
+                                <img alt="Trading Solution" src="/img/features/conversation-icon-1.png" />
+                                <div className={styles.featureTitle}>Trading Solution</div>
+                                <div className={styles.featureDescription}>Trading solutions for active day traders and new entrants.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <img alt="Cutting Edge Trading" src="https://robotrik.com/img/features/graphicon-1.png" />
-                                <div className="feature-title">Cutting Edge Trading</div>
-                                <div className="feature-description">Our aim is to help you gain confidence in online forex trading.</div>
+                                <div className={styles.featureTitle}>Cutting Edge Trading</div>
+                                <div className={styles.featureDescription}>Our aim is to help you gain confidence in online forex trading.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <img alt="Competitive Pricing" src="https://robotrik.com/img/features/rocket-icon-1.png" />
-                                <div className="feature-title">Competitive Pricing</div>
-                                <div className="feature-description">Competitive and low pricing for ordinary Traders.</div>
+                                <div className={styles.featureTitle}>Competitive Pricing</div>
+                                <div className={styles.featureDescription}>Competitive and low pricing for ordinary Traders.</div>
                             </div>
                         </div>
                     </div>
@@ -87,15 +104,15 @@ const Home = () => {
             </div>
 
 
-            <div className="container-fluid content">
+            <div className={`${styles['container-fluid']} ${styles.content}`}>
                 <div className="container">
                     <div className="row">
                         {/* <!-- Image Section --> */}
-                        <div className="col-12 col-md-6 image-container">
-                            <img alt="Robot images on mobile screens" src="https://robotrik.com/img/pexels-tima-miroshnichenko-7567523.jpg" className="img-fluid" />
+                        <div className={`col-12 col-md-6 ${styles['image-container']}`}>
+                            <img alt="Robot images on mobile screens" src="https://robotrik.com/img/pexels-tima-miroshnichenko-7567523.jpg" className={"img-fluid"} />
                         </div>
                         {/* <!-- Text Section --> */}
-                        <div className="col-12 col-md-6 text-container">
+                        <div className={`col-12 col-md-6 ${styles['text-container']}`}>
                             <h2>EXPERIENCE</h2>
                             <h1>First Trading Robot Which Have Best Features And Advantages Of Trading Robot Ever....</h1>
                             <p>
@@ -109,9 +126,9 @@ const Home = () => {
 
 
 
-            <div className="container-fluid mt5">
-                <div className="container Platform">
-                    <div className="text-content">
+            <div className={`${styles['container-fluid']} mt5`}>
+                <div className={`container ${styles.Platform}`}>
+                    <div className={styles.textContent}>
                         <h2>
                             WHY MT5?
                         </h2>
@@ -122,7 +139,7 @@ const Home = () => {
                             MetaTrader 5 is an advanced, user-friendly platform that traders can use to manage all aspects of their financial portfolio. It includes analytics tools and indicators as well as market depth information for trading stocks, indices or forex currency pairs on various different markets around the world including US Stocks Portfolio Monitor which provides real time updates about your investments 24/5!
                         </p>
                     </div>
-                    <div className="image-content">
+                    <div className={styles.imageContent}>
                         <img alt="" src="https://robotrik.com/img/mobile/moxkup-2.png" />
                     </div>
                 </div>
@@ -131,22 +148,22 @@ const Home = () => {
 
 
 
-            <div className="container-fluid">
-                <div className="container countries">
+            <div className={`${styles['container-fluid']}`}>
+                <div className={`container ${styles.countries}`}>
                     <div className="row">
                         {/* <!-- Cards Section --> */}
                         <div className="col-md-6 col-12">
                             <div className="row">
                                 {/* <!-- Row 1 --> */}
                                 <div className="col-md-6 col-12">
-                                    <div className="card">
+                                    <div className={styles.card}>
                                         <h2>100+</h2>
                                         <h3>Countries</h3>
                                         <p>RobotTrik is providing its world-class services in more than 100+ countries</p>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-12">
-                                    <div className="card">
+                                    <div className={styles.card}>
                                         <h2>1.5M+</h2>
                                         <h3>Users</h3>
                                         <p>RobotTrik has been trading for more than 1.5M+ happy clients.</p>
@@ -154,14 +171,14 @@ const Home = () => {
                                 </div>
                                 {/* <!-- Row 2 --> */}
                                 <div className="col-md-6 col-12">
-                                    <div className="card">
+                                    <div className={styles.card}>
                                         <h2>10000+</h2>
                                         <h3>Leaders</h3>
                                         <p>RobotTrik has been trading for more than 1.5M+ happy clients.</p>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-12">
-                                    <div className="card">
+                                    <div className={styles.card}>
                                         <i className="fas fa-brain" style={{ "fontSize": "50px", "color": "#00a651" }}></i>
                                         <h3>Platform</h3>
                                         <p>RobotTrik has been trading for more than 5.5M+ happy clients.</p>
@@ -171,7 +188,7 @@ const Home = () => {
                         </div>
                         {/* <!-- Image Section --> */}
                         <div className="col-md-6 col-12">
-                            <div className="image-card">
+                            <div className={styles.imageCard}>
                                 <img alt="RobotTrik" src="https://robotrik.com/img/image-18.png" className="img-fluid" />
                             </div>
                         </div>
@@ -190,51 +207,51 @@ const Home = () => {
 
 
 
-            <div className="container-fluid care">
-                <div className="container tools">
-                    <div className="header"> INNOVATIVE TRADING PLATFORM</div>
-                    <div className="title">How MT5 is the best?</div>
+            <div className={`${styles['container-fluid']} ${styles.care}`}>
+                <div className={`container ${styles.tools} py-5`}>
+                    <div className={styles.header}> INNOVATIVE TRADING PLATFORM</div>
+                    <div className={styles.title}>How MT5 is the best?</div>
                     <div className="row">
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-chart-line"></i>
-                                <div className="feature-title">Fast Trade Execution</div>
-                                <div className="feature-description">Fast Trade Execution.</div>
+                                <div className={styles.featureTitle}>Fast Trade Execution</div>
+                                <div className={styles.featureDescription}>Fast Trade Execution.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-star"></i>
-                                <div className="feature-title">FEATURES</div>
-                                <div className="feature-description">Advanced Trading Features.</div>
+                                <div className={styles.featureTitle}>FEATURES</div>
+                                <div className={styles.featureDescription}>Advanced Trading Features.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-hand-holding-usd"></i>
-                                <div className="feature-title">RELIABLE</div>
-                                <div className="feature-description">Safe and Secure.</div>
+                                <div className={styles.featureTitle}>RELIABLE</div>
+                                <div className={styles.featureDescription}>Safe and Secure.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-shield-alt"></i>
-                                <div className="feature-title"> TRUST</div>
-                                <div className="feature-description">Worlds Most Trusted and Secured Trading Platform.</div>
+                                <div className={styles.featureTitle}> TRUST</div>
+                                <div className={styles.featureDescription}>Worlds Most Trusted and Secured Trading Platform.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-award"></i>
-                                <div className="feature-title"> BEST</div>
-                                <div className="feature-description">Worlds Best innovative Terminal for Forex Trading.</div>
+                                <div className={styles.featureTitle}> BEST</div>
+                                <div className={styles.featureDescription}>Worlds Best innovative Terminal for Forex Trading.</div>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="feature">
+                            <div className={styles.feature}>
                                 <i className="fas fa-tasks"></i>
-                                <div className="feature-title">MULTI TASK</div>
-                                <div className="feature-description">Provides Multiple Forex Trading Instruments.</div>
+                                <div className={styles.featureTitle}>MULTI TASK</div>
+                                <div className={styles.featureDescription}>Provides Multiple Forex Trading Instruments.</div>
                             </div>
                         </div>
                     </div>
@@ -243,8 +260,8 @@ const Home = () => {
 
 
 
-            <div className="hero">
-                <div className="text">
+            <div className={styles.hero}>
+                <div className={styles.text}>
                     <h1 style={{ "color": "#007bff" }}>
                         The most profitable
                         <span style={{ "color": "#28a745" }}>Trading Robot</span>
@@ -260,7 +277,7 @@ const Home = () => {
                     </h1>
 
                 </div>
-                <div className="image">
+                <div className={styles.image}>
                     <img alt="Hero Image" src="https://robotrik.com/img/Hero-Image.png" />
                 </div>
             </div>

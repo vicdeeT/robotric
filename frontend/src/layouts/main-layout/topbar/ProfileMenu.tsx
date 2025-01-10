@@ -95,7 +95,7 @@ const ProfileMenu = () => {
             aria-haspopup="true"
           >
             <Avatar
-              src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` : user?.image}
+              src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` :  import.meta.env.VITE__API_Backend+user?.image}
               sx={(theme) => ({
                 ml: 0.8,
                 height: 32,
@@ -134,7 +134,7 @@ const ProfileMenu = () => {
       >
         <MenuItem onClick={handleProfileMenuClose} sx={{ '&:hover': { bgcolor: 'info.main' } }}>
           <Avatar
-            src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` : user?.image}
+            src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` : import.meta.env.VITE__API_Backend+user?.image}
             sx={{
               bgcolor: 'primary.main',
             }}

@@ -13,6 +13,8 @@ import Profileform from 'components/compononet/Profileform';
 import Home from 'pages/home';
 import About from 'pages/about';
 import Contact from 'pages/contact';
+import Admin from 'pages/admin';
+import Users from 'components/compononet/Users';
 // import Dashboard from 'pages/dashboard';
 
 const App = lazy(() => import('App'));
@@ -60,7 +62,7 @@ const router = createBrowserRouter(
         {
           path: '/',
           element: (
-              <Outlet />
+            <Outlet />
           ),
           children: [
             {
@@ -72,7 +74,7 @@ const router = createBrowserRouter(
         {
           path: '/',
           element: (
-              <Outlet />
+            <Outlet />
           ),
           children: [
             {
@@ -140,6 +142,30 @@ const router = createBrowserRouter(
             },
           ],
         },
+        {
+          path: '/',
+          element: (
+              <Outlet />
+          ),
+          children: [
+            {
+              element: <Admin />,
+              path: paths.admin
+            },
+          ],
+        },
+        {
+          path: '/',
+          element: (
+              <Outlet />
+          ),
+          children: [
+            {
+              element: <Users />,
+              path:paths.users
+            },
+          ],
+        },
 
 
         {
@@ -156,6 +182,10 @@ const router = createBrowserRouter(
             },
             {
               path: paths.signup,
+              element: <Signup />,
+            },
+            {
+              path: `${paths.signup}/:id`,
               element: <Signup />,
             },
           ],

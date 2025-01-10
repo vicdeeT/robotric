@@ -118,6 +118,22 @@ const sitemap: MenuItem[] = [
     active: true,
 
   },
+   {
+    id: 'Admin',
+    subheader: 'Admin',
+    path: paths.admin,
+    icon: 'material-symbols:settings-rounded',
+    active: true,
+
+  },
+   {
+    id: 'Users',
+    subheader: 'Users',
+    path: paths.users,
+    icon: 'material-symbols:settings-rounded',
+    active: true,
+
+  },
 
   {
     id: 'authentication',

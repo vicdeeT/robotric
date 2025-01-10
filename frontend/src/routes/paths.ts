@@ -15,6 +15,8 @@ export default {
   contact: `/contact`,
   directTeam: `/${rootPaths.network}/directTeams`,
   allTeams: `/${rootPaths.network}/allTeams`,
+  admin:`/admin`,
+  users:'/users',
 
   levelIncome: `/${rootPaths.income}/levelIncome`,
   IBincome: `/${rootPaths.income}/IBincome`,

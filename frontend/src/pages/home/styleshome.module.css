@@ -6,11 +6,11 @@ body {
           color: green; /* Green color */
           font-size: 3rem; /* Adjust icon size */
       }
-      .feature-title {
+      .featureTitle {
           font-weight: bold;
           margin-top: 10px;
       }
-      .feature-description {
+      .featureDescription {
           font-size: 0.9rem;
           color: #555;
       }
@@ -23,14 +23,14 @@ body {
     align-items: center;
   }
 
-  .navbar-brand {
+  .navbarbrand {
     color: #fff;
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: bold;
   }
 
-  .navbar-menu {
+  .navbarMenu {
     display: flex;
     list-style: none;
     margin: 0;
@@ -38,27 +38,27 @@ body {
     align-items: center;
   }
 
-  .navbar-menu li {
+  .navbarMenu li {
     margin-left: 1.5rem;
   }
 
-  .navbar-menu a {
+  .navbarMenu a {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s;
   }
 
-  .navbar-menu a:hover {
+  .navbarMenu a:hover {
     color: #ff6600;
   }
 
-  .navbar-buttons {
+  .navbarButtons {
     display: flex;
     align-items: center;
   }
 
-  .navbar-buttons a {
+  .navbarButtons a {
     display: inline-block;
     padding: 0.5rem 1rem;
     margin-left: 1rem;
@@ -70,30 +70,30 @@ body {
     transition: all 0.3s ease;
   }
 
-  .navbar-buttons .login {
+  .navbarButtons .login {
     background-color: #ff6600; /* Button background */
     color: #fff; /* Button text */
   }
 
-  .navbar-buttons .login:hover {
+  .navbarButtons .login:hover {
     background-color: transparent; /* Hover effect */
     color: #ff6600;
     border: 2px solid #ff6600; /* Hover border color */
   }
 
-  .navbar-buttons .open-account {
+  .navbarButtons .openAccount {
     background-color: #008CBA; /* Button background */
     color: #fff; /* Button text */
   }
 
-  .navbar-buttons .open-account:hover {
+  .navbarButtons .openAccount:hover {
     background-color: transparent; /* Hover effect */
     color: #008CBA;
     border: 2px solid #008CBA; /* Hover border color */
   }
 
   /* Mobile Menu */
-  .navbar-toggle {
+  .navbarToggle {
     display: none;
     background: none;
     border: none;
@@ -104,7 +104,7 @@ body {
 
   /* Responsive Design */
   @media (max-width: 768px) {
-    .navbar-menu {
+    .navbarMenu {
       display: none;
       flex-direction: column;
       background-color: #333;
@@ -115,21 +115,21 @@ body {
       padding: 1rem 0;
     }
 
-    .navbar-menu.show {
+    .navbarMenu.show {
       display: flex;
     }
 
-    .navbar-menu li {
+    .navbarMenu li {
       margin: 1rem 0;
       text-align: center;
     }
 
-    .navbar-buttons {
+    .navbarButtons {
       flex-direction: column;
       margin: 1rem 0 0;
     }
 
-    .navbar-buttons a {
+    .navbarButtons a {
       margin: 0.5rem 0;
     }
 
@@ -358,7 +358,7 @@ body {
 }
 
 /* Title styling for each feature */
-.feature-title {
+.featureTitle {
   font-size: 18px;
   font-weight: bold;
   color: #fff;
@@ -366,7 +366,7 @@ body {
 }
 
 /* Description styling for each feature */
-.feature-description {
+.featureDescription {
   font-size: 14px;
   color: #fff;
   line-height: 1.6;
@@ -535,35 +535,35 @@ body {
   flex-wrap: wrap;  /* Allow wrapping for smaller screens */
 }
 
-.text-content {
+.textContent {
   max-width: 50%;
 }
 
-.text-content h2 {
+.textContent h2 {
   color: #4a4a4a;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.text-content h1 {
+.textContent h1 {
   color: #2c2c2c;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.text-content p {
+.textContent p {
   color: #4a4a4a;
   font-size: 16px;
   line-height: 1.6;
 }
 
-.image-content {
+.imageContent {
   max-width: 40%;
 }
 
-.image-content img {
+.imageContent img {
   width: 100%;
   height: auto; /* Maintain aspect ratio */
   border-radius: 20px;
@@ -573,45 +573,45 @@ body {
 
 /* For large desktops (1440px and above) */
 @media (min-width: 1440px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 20px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 36px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 18px;
   }
-  .image-content img {
+  .imageContent img {
       max-height: 600px;
   }
 }
 
 /* For medium desktops (1200px to 1440px) */
 @media (max-width: 1439px) and (min-width: 1200px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 18px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 32px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 16px;
   }
-  .image-content img {
+  .imageContent img {
       max-height: 550px;
   }
 }
 
 /* For tablets (768px to 1199px) */
 @media (max-width: 1199px) and (min-width: 768px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 16px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 28px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 14px;
   }
 
@@ -619,13 +619,13 @@ body {
 
 /* For smaller tablets and phones (576px to 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 14px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 24px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 12px;
   }
  
@@ -636,21 +636,21 @@ body {
   .Platform {
       padding: 20px;  /* Less padding for smaller screens */
   }
-  .text-content {
+  .textContent {
       max-width: 100%;  /* Full width for small screens */
       text-align: center;  /* Center text for smaller screens */
   }
-  .image-content {
+  .imageContent {
       max-width: 100%;  /* Full width for smaller screens */
       margin-top: 20px;  /* Add some spacing between text and image */
   }
-  .text-content h2 {
+  .textContent h2 {
       font-size: 12px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 20px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 10px;
   }
   
@@ -688,7 +688,7 @@ body {
   font-size: 16px;
   margin: 0;
 }
-.image-card {
+.imageCard {
   width: 100%;
   margin-top: 20px;
   height: 400px;
@@ -699,7 +699,7 @@ body {
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.image-card img {
+.imageCard img {
   width: 100%;
   height: 400px;
 }
@@ -743,7 +743,7 @@ body {
   .card p {
       font-size: 12px;
   }
-  .image-card {
+  .imageCard {
       margin-top: 20px;
   }
 }
@@ -781,30 +781,30 @@ body {
   gap: 20px;
 }
 
-.text-content {
+.textContent {
   flex: 1;
   max-width: 50%;
 }
 
-.text-content h2 {
+.textContent h2 {
   font-size: 28px;
   color: #00a651;
   margin-bottom: 10px;
 }
 
-.text-content h1 {
+.textContent h1 {
   font-size: 36px;
   color: #2c2c2c;
   margin-bottom: 20px;
 }
 
-.text-content p {
+.textContent p {
   font-size: 16px;
   color: #6c6c6c;
   line-height: 1.6;
 }
 
-.image-content {
+.imageContent {
   flex: 1;
   max-width: 50%;
   display: flex;
@@ -812,7 +812,7 @@ body {
   align-items: center;
 }
 
-.image-content img {
+.imageContent img {
   width: 50%;
   height: auto;
   border-radius: 10px;
@@ -820,10 +820,10 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-  .text-content h1 {
+  .textContent h1 {
       font-size: 28px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 14px;
   }
 }
@@ -834,38 +834,38 @@ body {
       align-items: center;
       /* gap: 30px; */
   }
-  .text-content, .image-content {
+  .textContent, .imageContent {
       max-width: 100%;
       text-align: center;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 24px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 20px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 20px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 12px;
   }
 }
 
 @media (max-width: 320px) {
-  .text-content h2 {
+  .textContent h2 {
       font-size: 18px;
   }
-  .text-content h1 {
+  .textContent h1 {
       font-size: 18px;
   }
-  .text-content p {
+  .textContent p {
       font-size: 10px;
   }
 }

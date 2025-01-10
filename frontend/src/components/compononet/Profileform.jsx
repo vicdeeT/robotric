@@ -50,7 +50,7 @@ const Profileform = () => {
         let response=await UploadImageFunction(token,formData)
         setuserDetails((prev) => ({
             ...prev,
-            image: `${import.meta.env.VITE__API_Backend}${response.filePath}`,
+            image: `${response.filePath}`,
         }));
     };
 
@@ -82,7 +82,7 @@ const Profileform = () => {
                                 <img
                                     className="mx-auto w-[141px] h-[141px] bg-blue-300/20 rounded-full"
                                     src={
-                                        userDetails.image ||
+                                        import.meta.env.VITE__API_Backend+userDetails.image ||
                                         `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
                                             userDetails.email
                                         )}`

@@ -10,9 +10,10 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 
-
+console.log(`${process.env.MONGO_URI}`)
 const express = require("express")
 const bodyParser = require("body-parser")
+
 
 const cors = require("cors");
 

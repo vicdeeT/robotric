@@ -31,7 +31,7 @@ const DrawerItems = () => {
   }
   const handleLogOut = () => {
     localStorage.removeItem("authToken")
-    navigate("/authentication/login")
+    navigate("/")
   }
 
   return (
@@ -57,8 +57,8 @@ const DrawerItems = () => {
 
 
       <div className="flex flex-col items-center px-10">
-        <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` : user?.image} alt="profile image" />
-        <h5 className="mb-1 text-lg font-medium text-gray-900 text-white">{user?.username}</h5>
+        <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={!user?.image ? `https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}` :  import.meta.env.VITE__API_Backend+user?.image} alt="profile image" />
+        <h5 className="mb-1 text-lg font-medium text-white">{user?.username}</h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">UserId: {"RT"+user?.userId}</span>
 
       </div>

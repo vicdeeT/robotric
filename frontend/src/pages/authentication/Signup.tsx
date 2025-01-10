@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconifyIcon from 'components/base/IconifyIcon';
 import paths from 'routes/paths';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { signUpFunction } from 'services/authService';
 import { validReferall } from 'services/TeamApis';
 
@@ -17,7 +17,30 @@ interface User {
 }
 
 const Signup = () => {
+
+  // const location = useLocation()
+  const id = useParams()
+  // console.log("id",id.id)
+  // const refId = location.pathname.split("/")[location.pathname.split("/").length - 1]
   const [user, setUser] = useState<User>({ referrerId: '', name: '', email: '', password: '', mobile: '' });
+  useEffect(() => {
+    idCheck()
+  }, [])
+
+  const idCheck = async () => {
+    if (id.id) {
+      const response = await validReferall(id.id);
+      if (response?.valid) {
+        setIsValidReferrer(true);
+        setSponsorName(response.user?.name); // Assuming API returns sponsor name
+        setUser({ ...user, referrerId: id.id })
+      } else {
+        setIsValidReferrer(false);
+        setValidationMessage("Invalid Referrer ID.");
+      }
+    }
+  }
+
   const [showPassword, setShowPassword] = useState(false);
   const [SignUpSuccess, setSignUpSuccess] = useState(false)
   const [showMessageBox, setshowMessageBox] = useState(false)
@@ -54,8 +77,8 @@ const Signup = () => {
 
     try {
       // const token = localStorage.getItem("authToken");
-      const response = await validReferall(referrerId);
-      console.log(response, "re", response?.user)
+
+      const response = await validReferall(!id.id ? referrerId : id.id);
       if (response?.valid) {
         setIsValidReferrer(true);
         setSponsorName(response.user?.name); // Assuming API returns sponsor name
@@ -77,10 +100,10 @@ const Signup = () => {
     setshowMessageBox(false)
 
     const response = await signUpFunction(user)
-    console.log("response", response)
+    console.log("response signup", response)
     if (response.authToken) {
       localStorage.setItem("authToken", response?.authToken)
-      navigate("/")
+      navigate("/dashboard")
 
     }
     if (response.message || response.error) {
@@ -116,7 +139,8 @@ const Signup = () => {
             name="referrerId"
             className='w-1/2'
             type="text"
-            value={user.referrerId}
+            value={!id.id ? user.referrerId : id.id}
+
             onChange={handleInputChange}
             variant="filled"
             placeholder=" Referrer Id"
@@ -130,7 +154,7 @@ const Signup = () => {
         </div>
 
         {validationMessage && (<div className="px-6 flex flex-row items-center justify-between">
-          <span className="text-xs font-regular text-gray-900 mr-1 flex flex-row items-center text-blue-300">
+          <span className="text-xs font-regular mr-1 flex flex-row items-center text-blue-300">
           </span>
 
           <span className=" text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
@@ -183,7 +207,7 @@ const Signup = () => {
           required
         />
         {showMessageBox && (<div className="px-6 flex flex-row items-center justify-between">
-          <span className="text-xs font-regular text-gray-900 mr-1 flex flex-row items-center text-blue-300">
+          <span className="text-xs font-regular  mr-1 flex flex-row items-center text-blue-300">
             {message}
           </span>
 

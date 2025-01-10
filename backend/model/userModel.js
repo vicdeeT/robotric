@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  }, mobile: {
+  }, 
+  mobile: {
     type: String
   },
   image: { type: String },
