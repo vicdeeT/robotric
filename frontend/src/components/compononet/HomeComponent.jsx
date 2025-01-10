@@ -14,7 +14,7 @@ const HomeComponent = () => {
 
     const [allUsers, setallUsers] = useState([])
     const [allUsersTeam, setallUsersTeam] = useState([])
-    const [fetchUserDetails, setfetchUserDetails] = useState({ referrerId: '', username: '', email: '', referrerId: '', mobile: '', userId: "" })
+    const [fetchUserDetails, setfetchUserDetails] = useState({ referrerId: '', username: '', email: '', referrals: '', mobile: '', userId: "" })
 
 
     useEffect(() => {
