@@ -1,13 +1,12 @@
-// import { useEffect, useState } from "react"
 
 import { useEffect, useState } from "react"
-import { getAllUserFunction } from "services/TeamApis"
+import { getAllUserFunction, UpdateUserById } from "services/TeamApis"
 
 const Users = () => {
     const [Users, setUsers] = useState([])
     const [searchTerm, setsearchTerm] = useState("")
     const [fetchedUser, setfetchedUser] = useState([])
-    const [isSearchTerm, setisSearchTerm] = useState(false)
+    const [count, setcount] = useState(1)
     useEffect(() => {
         fetchUserDetails()
     }, [])
@@ -15,8 +14,9 @@ const Users = () => {
     const fetchUserDetails = async () => {
         let token = localStorage.getItem("authToken")
         let response = await getAllUserFunction(token)
-        console.log("res", response)
         setUsers(response)
+        setfetchedUser(response)
+
     }
 
     const handleChange = (e) => {
@@ -28,10 +28,38 @@ const Users = () => {
             item.email == searchTerm
         )
         setfetchedUser(result)
-        setisSearchTerm(true)
-        console.log("users", Users, "fetch", fetchedUser)
+
     }
 
+    const handleActivate = (e) => {
+        let isTrueSet = (e.target.value === 'true')
+        if (e.target.value == "all") {
+
+            setfetchedUser(Users)
+        }
+        else if (e.target.value == "blocked") {
+            const result = Users.filter((item) =>
+                !item.block == isTrueSet
+            )
+            setfetchedUser(result)
+        }
+        else {
+            const result = Users.filter((item) =>
+                item.Activation == isTrueSet
+            )
+            setfetchedUser(result)
+        }
+
+    }
+
+    const handleUserBtn = async (e) => {
+        const { name, value } = e.target
+
+        let response = await UpdateUserById(value, name)
+        if (response._id) {
+            await fetchUserDetails()
+        }
+    }
     return (
         <div className="bg-blue-900">
             <div className="min-h-screen bg-blue-950/50">
@@ -124,8 +152,10 @@ const Users = () => {
                         <div className="flex justify-between my-4">
                             <div className="flex space-x-2">
                                 <div></div>
-                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2">Active Users</button>
-                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2">InActive Users</button>
+                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2" value={true} onClick={handleActivate}>Active Users</button>
+                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2" value={false} onClick={handleActivate}>InActive Users</button>
+                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2" value={"all"} onClick={handleActivate}>All Users</button>
+                                <button className="bg-blue-900 text-white rounded-md hover:bg-blue-950 px-3 py-2" value={"blocked"} onClick={handleActivate}>Blocked Users</button>
                             </div>
                             <div className="flex space-x-2 items-center">
                                 <div></div>
@@ -153,18 +183,24 @@ const Users = () => {
                                     <th scope="col" className="px-6 py-3">
                                         no. of referrals
                                     </th>
+
                                     <th scope="col" className="px-6 py-3">
-                                        Activate Status
+                                        User Activation
+
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        User Activation or Payment Status
+                                        Payment Status
+
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        BlockUser
 
                                     </th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {!isSearchTerm && Users?.map((item, key) => (
+                                {fetchedUser?.map((item, key) => (
                                     <tr className="bg-blue-950 border-b border-blue-400" key={key}>
                                         <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
                                             {item.userId}
@@ -179,64 +215,18 @@ const Users = () => {
                                             {item.referrals.length}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {key % 2 == 0 ? "Yes" : "No"}
+                                            <button className={`w-fit rounded-md ${!item.Activation ? 'bg-red-600 hover:bg-red-800 px-3' : 'bg-green-600 hover:bg-green-800 px-4'} text-white  py-2`} name="Activation" value={item?.userId} onClick={handleUserBtn}>{item?.Activation ? "Activate" : "Deactivate"}</button>
                                         </td>
-                                        <td className="px-6 py-4 flex space-x-2">
-                                            <div></div>
-                                            <button className="w-fit rounded-md bg-fuchsia-600 hover:bg-fuchsia-800 text-white px-3 py-2">Activate / Deactivate</button>
-                                            <button className="w-fit rounded-md bg-red-600 hover:bg-red-800 text-white px-3 py-2">Payment Status</button>
+                                        <td className="px-6 py-4 ">
+                                            <button className={`w-fit rounded-md ${!item.paid ? 'bg-fuchsia-600 hover:bg-fuchsia-800 px-3' : 'bg-green-600 hover:bg-green-800 px-4'} text-white  py-2`} name="paid" value={item?.userId} onClick={handleUserBtn}>{item?.paid ? "Paid" : "UnPaid"}</button>
+                                        </td>
+                                        <td className="px-6 py-4 ">
+                                            <button className={`w-fit rounded-md ${!item.block ? 'bg-red-600 hover:bg-red-800 px-4' : 'bg-red-400 hover:bg-red-600 px-3'} text-white  py-2`} name="Block" value={item?.userId} onClick={handleUserBtn}>{!item?.block ? "Block" : "UnBlock"}</button>
                                         </td>
                                     </tr>
                                 ))}
-                                {(isSearchTerm && fetchedUser?.length > 0) ? (fetchedUser.map((item, key) => (
-                                    <tr className="bg-blue-950 border-b border-blue-400" key={key}>
-                                        <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                            {item.userId}
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            {item.username}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item.email}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item.referrals.length}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {key % 2 == 0 ? "Yes" : "No"}
-                                        </td>
-                                        <td className="px-6 py-4 flex space-x-2">
-                                            <div></div>
-                                            <button className="w-fit rounded-md bg-fuchsia-600 hover:bg-fuchsia-800 text-white px-3 py-2">Activate / Deactivate</button>
-                                            <button className="w-fit rounded-md bg-red-600 hover:bg-red-800 text-white px-3 py-2">Payment Status</button>
-                                        </td>
-                                    </tr>
-                                ))) : (isSearchTerm && "No Data Found")}
-                                {/* {isSearchTerm &&
-                                    <tr className="bg-blue-950 border-b border-blue-400" key={fetchedUser.userId}>
-                                        <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                            {fetchedUser.userId}
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            {fetchedUser.username}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {fetchedUser.email}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {Math.floor(1 + Math.random() * 10) % 2 == 0 ? "Yes" : "No"}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {fetchedUser?.referrals?.length}
-                                        </td>
-                                        <td className="px-6 py-4 flex space-x-2">
-                                            <div></div>
-                                            <button className="w-fit rounded-md bg-fuchsia-600 hover:bg-fuchsia-800 text-white px-3 py-2">Activate / Deactivate</button>
-                                            <button className="w-fit rounded-md bg-red-600 hover:bg-red-800 text-white px-3 py-2">Payment Status</button>
-                                        </td>
 
-                                    </tr>
-                                } */}
+
 
                             </tbody>
                         </table>

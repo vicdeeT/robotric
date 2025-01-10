@@ -4,7 +4,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require("../model/userModel");
 
-const dotenv=require("dotenv")
+const dotenv = require("dotenv")
 dotenv.config()
 
 
@@ -38,7 +38,7 @@ router.post("/create-user", [
                 if (user) {
                     return res.status(400).json({ message: "A user with this email already exists", user: { username: user.username, email: user.email } });
                 }
-                let userId = Math.floor(100000+Math.random()*900000)
+                let userId = Math.floor(100000 + Math.random() * 900000)
 
                 const salt = await bcryptjs.genSalt(10);
                 const hashedPassword = await bcryptjs.hash(req?.body?.password, salt);
@@ -96,20 +96,26 @@ router.post("/login", [
         if (!user) {
             return res.status(400).json({ errors: "User doesn't exist" });
         }
+        else if (user.block) res.status(501).json({ errors: "You are Blocked By Admin" })
 
-        const isPasswordValid = await bcryptjs.compare(req.body.password, user.password);
-        if (!isPasswordValid) {
-            return res.status(400).json({ errors: "Incorrect credentials, please try again" });
+        else {
+            const isPasswordValid = await bcryptjs.compare(req.body.password, user.password);
+
+            if (!isPasswordValid) {
+                return res.status(400).json({ errors: "Incorrect credentials, please try again" });
+            }
+            const data = {
+                id: user._id
+            };
+
+            const authToken = jwt.sign(data, jwtSecret);
+            console.log("Auth Token:", authToken);
+
+            res.json({ authToken });
+
         }
 
-        const data = {
-            id: user._id
-        };
 
-        const authToken = jwt.sign(data, jwtSecret);
-        console.log("Auth Token:", authToken);
-
-        res.json({ authToken });
 
     } catch (error) {
         console.error('Error during login:', error);

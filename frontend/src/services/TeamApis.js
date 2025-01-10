@@ -77,6 +77,23 @@ export const UpdateUserFunction = async (token, data) => {
     return parsedResponse
 }
 
+export const UpdateUserById = async (id, data) => {
+    console.log("data", data, id)
+    const data1 = { data: data }
+    console.log(JSON.stringify(data1))
+    let response = await fetch(`http://localhost/api/users/user/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+
+        },
+        body: JSON.stringify(data1)
+    })
+    let parsedResponse = await response.json()
+    console.log(parsedResponse)
+    return parsedResponse
+}
+
 export const UploadImageFunction = async (token, formData) => {
 
     try {

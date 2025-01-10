@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require("../model/userModel");
 
-const dotenv=require("dotenv")
+const dotenv = require("dotenv")
 dotenv.config()
 
 const jwtSecret = `${process.env.SECRET}`;
@@ -29,6 +29,8 @@ const fetchuser = (req, res, next) => {
     }
 };
 
+
+
 const router = express.Router();
 
 
@@ -44,6 +46,8 @@ router.post("/user", fetchuser, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 router.get("/referalls/:userId", fetchuser, async (req, res) => {
     const { userId } = req.params;
@@ -77,6 +81,7 @@ router.get("/", fetchuser, async (req, res) => {
 
 
 
+
 router.post("/referall/:referallId", async (req, res) => {
     const { referallId } = req.params;
 
@@ -106,6 +111,7 @@ router.post("/referall/:referallId", async (req, res) => {
 });
 
 
+
 const getReferredUsers = async (userId, allReferredUsers = []) => {
     console.log("user in getrefereedUser", userId)
     const user = await User.findOne({ userId: userId });
@@ -118,6 +124,7 @@ const getReferredUsers = async (userId, allReferredUsers = []) => {
     }
     return allReferredUsers;
 };
+
 
 
 router.get("/referrals/:userId", async (req, res) => {
@@ -135,6 +142,7 @@ router.get("/referrals/:userId", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 
 router.put("/user", fetchuser, async (req, res) => {
@@ -159,5 +167,39 @@ router.put("/user", fetchuser, async (req, res) => {
     }
 });
 
+
+
+router.put("/user/:id", async (req, res) => {
+    let { id } = req.params;
+    console.log(id)
+    const data = req.body
+    console.log(data)
+
+    try {
+        const user = await User.findOne({ userId: id }).select("-password");
+        const _id = user._id
+        if (data.data == "paid") user.paid = !user.paid
+        else if (data.data == "Activation") user.Activation = !user.Activation
+        else if (data.data == "Block") user.block = !user.block
+        let da = await User.findByIdAndUpdate(_id, user, {
+            new: true
+        })
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        res.status(200).json(da);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+router.put("/user/block/:id", async (req, res) => {
+    const id = { id }
+    try {
+        const user = await User.findOne({ userId: id }).select("-password");
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router;

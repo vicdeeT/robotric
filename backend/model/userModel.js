@@ -9,7 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  }, 
+  },
+  block:{type:Boolean,default:false},
+  Activation: { type: Boolean, default: false },
+  paid: { type: Boolean, default: false },
   mobile: {
     type: String
   },
@@ -27,7 +30,7 @@ const userSchema = new mongoose.Schema({
     },
   },
 
-  
+
   referrals: [{ type: String }],
 
   date: { type: String, default: Date }
