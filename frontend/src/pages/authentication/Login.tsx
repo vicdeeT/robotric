@@ -19,7 +19,7 @@ interface User {
 }
 
 const Login = () => {
-  const [user, setUser] = useState<User>({ email: '', password: '' });
+  const [user, setUser] = useState<User>({ username: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
 
@@ -31,6 +31,7 @@ const Login = () => {
     e.preventDefault();
     console.log(user);
     const response = await loginFunction(user)
+    console.log(response)
 
     if (response.authToken) {
       localStorage.setItem("authToken", response?.authToken)
@@ -58,7 +59,8 @@ const Login = () => {
       </Typography>
 
       <Stack onSubmit={handleSubmit} component="form" direction="column" gap={2}>
-        <TextField
+    
+        {/* <TextField
           id="email"
           name="email"
           type="email"
@@ -70,7 +72,8 @@ const Login = () => {
           fullWidth
           autoFocus
           required
-        />
+        /> */}
+        <input type="text" name="username" value={user.username} required onChange={handleInputChange} placeholder='UserName' className='rounded-sm outline-none px-2 my-auto py-2 border border-1 border-none border-gray-600 text-slate-300 bg-transparent'/>
         <TextField
           id="password"
           name="password"

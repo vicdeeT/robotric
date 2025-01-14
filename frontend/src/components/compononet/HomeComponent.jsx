@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchUser, getAllTeam, getAllUserFunction, getAlldirectUser } from "services/TeamApis"
+import Card from './Card'
 
 const HomeComponent = () => {
     const id = '0x29b6f7FBD564e59Bc60B5f398f72df673394252f'
@@ -46,7 +47,10 @@ const HomeComponent = () => {
     return (
 
         <section id="testimonies" className="py-20 sm:bg-red-500 md:bg-green-500 lg:bg-yellow-600 bg-fuchsia-700">
-            <div className="mx-8 md:mx-10 lg:mx-20 xl:mx-24">
+
+<div className="card flex justify-center bg-transparent border-none items-center"><Card/> </div>   
+
+        <div className="mx-8 md:mx-10 lg:mx-20 xl:mx-24">
 
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
@@ -110,7 +114,7 @@ const HomeComponent = () => {
                             </div>
                         </li>
 
-                        <li className="text-sm leading-6">
+                        <li className="text-sm leading-6 hidden">
                             <div className="relative group">
                                 <div
                                     className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200">
@@ -225,7 +229,7 @@ const HomeComponent = () => {
 
 
 
-                        <li className="text-sm leading-6">
+                        <li className="text-sm leading-6 lg:hidden hidden md:block">
                             <div className="relative group">
                                 <div
                                     className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200">
@@ -264,7 +268,7 @@ const HomeComponent = () => {
                     </ul>
 
 
-                    <ul className="space-y-8 lg:block">
+                    <ul className="space-y-8 lg:block hidden">
                         <li className="text-sm leading-6">
                             <div className="relative group">
                                 <div
@@ -299,7 +303,7 @@ const HomeComponent = () => {
                             </div>
                         </li>
 
-                        <li className="text-sm leading-6">
+                        <li className="text-sm leading-6 hidden">
                             <div className="relative group">
                                 <div
                                     className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200">

@@ -26,6 +26,35 @@ const sitemap: MenuItem[] = [
     icon: 'mingcute:home-1-fill',
     active: true,
   },
+  {
+    id: 'Profile',
+    subheader: 'Profile',
+    icon: 'mingcute:safe-lock-fill',
+    items: [
+      {
+        name: 'My Profile',
+        pathName: 'withdrawlReport',
+        path: paths.profile,
+      },
+      
+      {
+        name: 'Profile KYC',
+        pathName: 'withdrawlAmount',
+        path: paths.profile,
+      },
+    
+      {
+        name: 'Welcome Letter',
+        pathName: 'accountStatement',
+        path: paths.profile,
+      },
+      {
+        name: 'My ID Card',
+        pathName: 'withdrawlReport',
+        path: paths.profile,
+      },
+    ],
+  },
 
   {
     id: 'network',
@@ -40,6 +69,11 @@ const sitemap: MenuItem[] = [
       {
         name: 'All Team',
         pathName: 'allTeam',
+        path: paths.allTeams,
+      },
+      {
+        name: 'Generate Tree',
+        pathName: 'Generate Tree',
         path: paths.allTeams,
       },
     ],
@@ -118,7 +152,8 @@ const sitemap: MenuItem[] = [
     active: true,
 
   },
-   {
+
+  {
     id: 'Admin',
     subheader: 'Admin',
     path: paths.admin,
@@ -126,7 +161,7 @@ const sitemap: MenuItem[] = [
     active: true,
 
   },
-   {
+  {
     id: 'Users',
     subheader: 'Users',
     path: paths.users,

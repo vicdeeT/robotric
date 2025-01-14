@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   image: { type: String },
   password: { type: String, required: true },
+  admin:{type:String,default:false},
 
   referrerId: {
     type: String,

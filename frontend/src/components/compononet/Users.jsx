@@ -1,12 +1,32 @@
 
 import { useEffect, useState } from "react"
+import { fetchUser } from "services/authService"
 import { getAllUserFunction, UpdateUserById } from "services/TeamApis"
+import Profileform from "./Profileform"
 
 const Users = () => {
     const [Users, setUsers] = useState([])
     const [searchTerm, setsearchTerm] = useState("")
     const [fetchedUser, setfetchedUser] = useState([])
-    const [count, setcount] = useState(1)
+    const [isAdmin, setisAdmin] = useState(false)
+    const [user, setuser] = useState({ userId: '', email: '', admin: '' })
+
+    useEffect(() => {
+        setisAdmin(false)
+        fetchUserSingle()
+
+    }, [])
+
+
+    const fetchUserSingle = async () => {
+        setisAdmin(false)
+        const token = localStorage.getItem("authToken")
+        let response = await fetchUser(token)
+        setuser(response)
+        if (user.admin) {
+            setisAdmin(true)
+        }
+    }
     useEffect(() => {
         fetchUserDetails()
     }, [])

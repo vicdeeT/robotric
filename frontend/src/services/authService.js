@@ -1,4 +1,7 @@
+
+
 export const loginFunction = async (data) => {
+    console.log(data)
     let response = await fetch(`${import.meta.env.VITE__API_LOGINAPI}`, {
         method: "POST",
         body: JSON.stringify(data),

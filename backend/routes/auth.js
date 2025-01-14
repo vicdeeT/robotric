@@ -79,9 +79,43 @@ router.post("/create-user", [
     }
 });
 
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
+
+
+const isAdmin = (req, res, next) => {
+    const token = req.header("auth-token");
+    console.log("Auth Token:success");
+
+    if (!token) {
+        return res.status(401).json({ error: "Please authenticate using a valid token" });
+    }
+
+    try {
+        
+        const decoded = jwt.verify(token, jwtSecret);
+        if (token == process.env.AuthToken) {
+            req.user = decoded;
+            let authToken = process.env.AuthToken
+            return res.json({ token, authToken })
+            // next();
+        }
+
+        return res.status(401).json({ error: "Please authenticate using a valid token" });
+
+
+
+    } catch (error) {
+        console.error("Token verification error:", error);
+        res.status(401).json({ error: "Please authenticate using a valid token" });
+    }
+};
 
 router.post("/login", [
-    body("email", 'Enter a valid email').isEmail(),
+    body("username", 'Enter a valid username').exists(),
     body('password', 'Password cannot be blank').exists()
 ], async (req, res) => {
 
@@ -92,29 +126,62 @@ router.post("/login", [
 
     try {
 
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) {
-            return res.status(400).json({ errors: "User doesn't exist" });
-        }
-        else if (user.block) res.status(501).json({ errors: "You are Blocked By Admin" })
-
-        else {
-            const isPasswordValid = await bcryptjs.compare(req.body.password, user.password);
-
-            if (!isPasswordValid) {
-                return res.status(400).json({ errors: "Incorrect credentials, please try again" });
+        const isEmail = isValidEmail(req?.body?.username)
+        console.log("iseEma", isEmail)
+        if (isEmail) {
+            const user = await User.findOne({ email: req.body.username });
+            if (!user) {
+                return res.status(400).json({ errors: "User doesn't exist" });
             }
-            const data = {
-                id: user._id
-            };
+            else if (user.block) res.status(501).json({ errors: "You are Blocked By Admin" })
 
-            const authToken = jwt.sign(data, jwtSecret);
-            console.log("Auth Token:", authToken);
+            else {
+                const isPasswordValid = await bcryptjs.compare(req.body.password, user.password);
 
-            res.json({ authToken });
+                if (!isPasswordValid) {
+                    return res.status(400).json({ errors: "Incorrect credentials, please try again" });
+                }
+                const data = {
+                    id: user._id
+                };
 
+                const authToken = jwt.sign(data, jwtSecret);
+                console.log("Auth Token:", authToken);
+
+                res.json({ authToken });
+
+            }
         }
+        else {
+            let userId = req?.body?.username
+            userId = userId.replace("RT", "");
+            const user = await User.findOne({ userId: userId });
+            if (!user) {
+                return res.status(400).json({ errors: "User doesn't exist" });
+            }
+            else if (user?.block) res.status(501).json({ errors: "You are Blocked By Admin" })
+            else {
+                console.log("user", user, req.body.password, user.password)
 
+                const isPasswordValid = await bcryptjs.compare(req?.body?.password, user?.password);
+                console.log("isPass", isPasswordValid)
+
+                if (!isPasswordValid) {
+                    return res.status(400).json({ errors: "Incorrect credentials, please try again" });
+                }
+                const data = {
+                    id: user._id
+                };
+
+                const authToken = jwt.sign(data, jwtSecret);
+                console.log("Auth Token:", authToken);
+                if (authToken == process.env.AuthToken) return res.json({ "role": "admin", authToken });
+
+
+                res.status(200).json({ "role": "user", authToken });
+
+            }
+        }
 
 
     } catch (error) {
